@@ -47,8 +47,10 @@ a:hover{text-decoration:underline;}
   width:160px;
   height:160px;
   border-radius:50%;
-  object-fit:cover;
-  object-position:center top;
+  object-fit:contain;
+  object-position:center center;
+  padding:8px;
+  background:#061314;
   border:3px solid var(--accent);
   box-shadow:0 0 0 6px rgba(56,189,248,0.12), 0 20px 40px rgba(0,0,0,0.4);
   flex-shrink:0;
