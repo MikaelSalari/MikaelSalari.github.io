@@ -44,8 +44,8 @@ a:hover{text-decoration:underline;}
 }
 .hero-inner{display:flex;align-items:center;gap:48px;flex-wrap:wrap;}
 .hero-photo{
-  width:160px;
-  height:160px;
+  width:320px;
+  height:320px;
   border-radius:50%;
   object-fit:contain;
   object-position:center center;
