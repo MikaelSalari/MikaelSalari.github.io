@@ -109,3 +109,71 @@ document.querySelectorAll('#contact .contact-links .btn, .hero-actions .btn').fo
   button.prepend(svg);
   Object.assign(button.style, {display: 'inline-flex', alignItems: 'center', gap: '10px'});
 });
+
+const publicationUpdates = [
+  ['Bridging Function Block Diagrams', 'https://link.springer.com/chapter/10.1007/978-3-032-40118-2_13', 'Read Springer chapter →', 'ISoLA 2026 · Springer · Published 2026'],
+  ['An Empirical Investigation', 'https://link.springer.com/article/10.1007/s42979-025-03843-3', 'Read journal article →', 'SN Computer Science · Volume 6, Article 314 · March 2025'],
+  ['PyLC+:', 'https://ieeexplore.ieee.org/document/11126445/', 'Read on IEEE Xplore →', 'IEEE COMPSAC 2025 · Toronto · July 2025'],
+  ['Enabling Test Automation', 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:1848304', 'Read licentiate thesis →', 'Licentiate thesis · Mälardalen University · 2024'],
+  ['Automating Test Generation', 'https://ieeexplore.ieee.org/document/10479451/', 'Read on IEEE Xplore →', '30th Asia-Pacific Software Engineering Conference (APSEC 2023) · IEEE'],
+  ['PyLC: A Framework', 'https://dl.acm.org/doi/10.1145/3555776.3577698', 'Read on ACM Digital Library →', '38th ACM/SIGAPP Symposium on Applied Computing (SAC 2023)'],
+  ['An Experiment in Requirements', 'https://ieeexplore.ieee.org/document/10132248/', 'Read on IEEE Xplore →', 'IEEE ICSTW / A-MOST 2023'],
+  ['Choosing a Test Automation', 'https://ieeexplore.ieee.org/document/9787944/', 'Read on IEEE Xplore →', 'IEEE ICSTW 2022']
+];
+document.querySelectorAll('#publications .pub-item').forEach(card => {
+  const heading = card.querySelector('h3');
+  const entry = publicationUpdates.find(([prefix]) => heading?.textContent.startsWith(prefix));
+  if (!entry) return;
+  const [, url, label, metadata] = entry;
+  const link = card.querySelector('a');
+  if (link) {
+    link.href = url;
+    link.textContent = label;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  }
+  const meta = card.querySelector('.pub-meta');
+  if (meta) meta.textContent = metadata;
+  if (entry[0] === 'Enabling Test Automation') heading.textContent = 'Enabling Test Automation for Industrial PLC Programs (Licentiate Thesis)';
+});
+
+const missingPublications = [
+  {
+    title: 'Test Automation for Industrial Programmable Logic Controller Software: From Requirements to Executable Tests',
+    meta: 'Doctoral thesis · Mälardalen University Press Dissertations No. 456 · 2026',
+    description: 'Presents test automation and verification techniques for industrial PLC software, including PyLC+, Nagini-based verification, search-based testing, requirements-based testing, and the offline PyLC-M1 assistant.',
+    url: 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:2020129',
+    label: 'Read doctoral thesis →'
+  },
+  {
+    title: 'A Verification-Aware Pipeline for Programmable Logic Controllers: From Function Block Diagrams to Verified Python Code',
+    meta: 'Technical report · Mälardalen Real-Time Research Centre (MRTC) · December 2025',
+    description: 'Uses PyLC+ and Nagini to verify industrial Function Block Diagram logic translated into Python, reporting a replication study involving 13 industrial program organization units.',
+    url: 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:2019808',
+    label: 'Read technical report →'
+  }
+];
+const publicationList = document.querySelector('#publications .pub-list');
+if (publicationList) {
+  missingPublications.forEach(publication => {
+    if (Array.from(publicationList.querySelectorAll('h3')).some(h => h.textContent === publication.title)) return;
+    const card = document.createElement('div');
+    card.className = 'pub-item';
+    const heading = document.createElement('h3');
+    heading.textContent = publication.title;
+    const meta = document.createElement('p');
+    meta.className = 'pub-meta';
+    meta.textContent = publication.meta;
+    const description = document.createElement('p');
+    description.textContent = publication.description;
+    const link = document.createElement('a');
+    link.href = publication.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = publication.label;
+    card.append(heading, meta, description, link);
+    const beforeCard = Array.from(publicationList.children).find(element => element.querySelector('h3')?.textContent.startsWith(publication.meta.startsWith('Doctoral') ? 'An Empirical Investigation' : 'PyLC+:'));
+    if (beforeCard) publicationList.insertBefore(card, beforeCard);
+    else publicationList.append(card);
+  });
+}
