@@ -177,3 +177,20 @@ if (publicationList) {
     else publicationList.append(card);
   });
 }
+
+const certificationItems = [
+  'Introduction to DevOps — IBM · Issued March 2025',
+  'CODESYS Fundamentals Course — Beckhoff Automation · Issued June 2024',
+  'IELTS — British Council · Issued February 2021',
+  'Second Rank Winner in Creative City Competition, Mashhad, Iran 2019 — Mashhad Municipality · Issued May 2019',
+  'Letter of Commendation from Mashhad City Director of Research and Statistics Office — Mashhad Municipality · Issued April 2019',
+  'Letter of Commendation from Mashhad City Municipality — Mashhad Municipality · Issued April 2019',
+  'Letter of Commendation from the Deputy of Mashhad City Mayor in Finance and Logistics — Mashhad Municipality · Issued April 2019',
+  'Letter of Commendation from Mashhad City Mayor for Successful Implementation of “The Spring House 98” — Mashhad Municipality · Issued March 2019',
+  'Letter of Commendation from the Deputy of Mashhad City Mayor in Human Resources Planning — Mashhad Municipality · Issued March 2019',
+  'Second Top Student of IT Department — Islamic Azad University of Mashhad · Issued January 2017'
+];
+const certificationHeading = Array.from(document.querySelectorAll('#awards .sub-heading')).find(heading => heading.textContent.trim() === 'Licenses & Certifications');
+if (certificationHeading) {
+  replaceList(certificationHeading.parentElement, certificationItems);
+}
