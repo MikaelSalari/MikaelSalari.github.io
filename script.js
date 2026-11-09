@@ -17,8 +17,8 @@ if (stylesheet) {
 const portrait = document.querySelector('.hero-photo');
 if (portrait) {
   Object.assign(portrait.style, {
-    width: '320px',
-    height: '320px',
+    width: '280px',
+    height: '280px',
     maxWidth: '100%',
     aspectRatio: '1 / 1',
     objectFit: 'contain',
@@ -29,7 +29,7 @@ if (portrait) {
   });
   const resizePortrait = () => {
     const availableWidth = portrait.parentElement.clientWidth - 48;
-    const size = Math.min(320, availableWidth);
+    const size = Math.min(280, availableWidth);
     portrait.style.width = `${size}px`;
     portrait.style.height = `${size}px`;
   };
@@ -179,6 +179,7 @@ if (publicationList) {
 }
 
 const certificationItems = [
+  'PLC application iQ-R and GX Works3 — Mitsubishi Electric Europe B.V., Factory Automation Scandinavia · Completed 4 June 2026 · Two-day training, Nacka, Sweden',
   'Introduction to DevOps — IBM · Issued March 2025',
   'CODESYS Fundamentals Course — Beckhoff Automation · Issued June 2024',
   'IELTS — British Council · Issued February 2021',
